@@ -21,3 +21,9 @@ test('test for invalid package name', async t => {
     t.same(error.message, 'nonexistent package');
   });
 });
+
+test('test for no package name', t => {
+  npmDownloads({module: null}).catch(error => {
+    t.same(error.message, 'module name required');
+  });
+});
