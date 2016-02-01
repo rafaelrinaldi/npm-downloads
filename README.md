@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ npm install npm-downloads -g
+$ npm install @rafaelrinaldi/npm-downloads -g
 ```
 
 ## Usage
