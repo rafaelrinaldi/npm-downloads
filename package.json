@@ -43,7 +43,6 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "got": "^6.1.1",
-    "lodash.flow": "^3.2.1",
     "log-update": "^1.0.2",
     "minimist": "^1.2.0",
     "number-grouper": "0.0.1",
