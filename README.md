@@ -11,16 +11,17 @@ $ npm install npm-downloads -g
 ## Usage
 
 ```sh
-Usage: npm-downloads [OPTIONS]
+Usage: npm-downloads <MODULE> [OPTIONS]
 
   Get the downloads count from a given npm package
 
 Example:
-  $ npm-downloads .
+  $ npm-downloads jquery
 
 Options:
   -v --version              Display current software version
   -h --help                 Display help and usage details
+     --module               Module to search for the downloads count (or you can just pass it along as seen on the example)
 ```
 
 ## License
