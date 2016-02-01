@@ -33,29 +33,22 @@ const fetchDownloadsCount = options => {
   ]);
 };
 
-const handleNonexistentPackage = (options, response) => {
-  const isBadResponse = item => item.error;
-
-  if (Array.isArray(response) && response.some(isBadResponse)) {
-    console.log(`The package ${chalk.bold.red(options.module)} doesn't seem to exist`);
-    return false;
-  }
-
-  return true;
+const isNonexistentPackage = response => {
+  return Array.isArray(response) && response.some(item => item.error);
 };
 
-const handleFetchError = error => {
+const logError = error => {
   spinner.stop();
 
   if (error.code === 'ENOTFOUND') {
-    console.log(`Looks like you have internet connection issues ☹`);
+    error.message = `Looks like you have internet connection issues`;
   } else if (error.code === 'ETIMEDOUT') {
-    console.log(`Tried ${fetchOptions.retries} times but the request has timed out. Sorry ☹`);
-  } else {
-    console.log(error);
+    error.message = `Tried ${fetchOptions.retries} times but the request has timed out`;
+  } else if (error.message === 'nonexistent package') {
+    console.log(`Package doesn't seem to exist`);
   }
 
-  return process.exit(1);
+  return error;
 };
 
 const npmDownloads = options => {
@@ -68,14 +61,16 @@ const npmDownloads = options => {
     .then(response => {
       spinner.stop();
 
-      if (handleNonexistentPackage(options, response)) {
-        printDownloadsCount(options.module, response);
+      if (isNonexistentPackage(response)) {
+        return Promise.reject(new Error('nonexistent package'));
       }
+
+      printDownloadsCount(options.module, response);
 
       return response;
     })
     .catch(error => {
-      return handleFetchError(error);
+      throw logError(error);
     });
 };
 
