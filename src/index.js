@@ -46,12 +46,18 @@ const logError = error => {
     error.message = `Tried ${fetchOptions.retries} times but the request has timed out`;
   } else if (error.message === 'nonexistent package') {
     console.log(`Package doesn't seem to exist`);
+  } else if (error.message === 'module name required') {
+    console.log(`Specify a module name`);
   }
 
   return error;
 };
 
 const npmDownloads = options => {
+  if (!options.module || typeof options.module !== 'string') {
+    return Promise.reject(new Error('module name required'));
+  }
+
   spinner.start(`Fetching ${chalk.bold.green(options.module)} downloads`);
 
   return fetchDownloadsCount(options)
@@ -68,10 +74,11 @@ const npmDownloads = options => {
       printDownloadsCount(options.module, response);
 
       return response;
-    })
-    .catch(error => {
-      throw logError(error);
     });
 };
 
-module.exports = npmDownloads;
+module.exports = options => {
+  return npmDownloads(options).catch(error => {
+    throw logError(error);
+  });
+};
