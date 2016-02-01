@@ -59,6 +59,9 @@ const logError = error => {
   } else if (error.message === 'module name required') {
     console.log(`Specify a module name`);
     kill(1);
+  } else if (error.message === 'private modules not supported') {
+    console.log(`Private modules are currently not supported`);
+    kill(1);
   }
 
   return error;
@@ -67,6 +70,8 @@ const logError = error => {
 const npmDownloads = options => {
   if (!options.module || typeof options.module !== 'string') {
     return Promise.reject(new Error('module name required'));
+  } else if (/^@/.test(options.module)) {
+    return Promise.reject(new Error('private modules not supported'));
   }
 
   spinner.start(`Fetching ${chalk.bold(options.module)} downloads`);

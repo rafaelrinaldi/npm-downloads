@@ -27,3 +27,9 @@ test('test for no package name', t => {
     t.same(error.message, 'module name required');
   });
 });
+
+test('test for private module', t => {
+  npmDownloads({module: '@cycle/core'}).catch(error => {
+    t.same(error.message, 'private modules not supported');
+  });
+});
