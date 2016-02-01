@@ -20,7 +20,7 @@ const defaults = {
 const help = `
 Usage: npm-downloads <MODULE> [OPTIONS]
 
-  Get the downloads count from a given npm package
+  Get the downloads count from a given npm package from the Terminal
 
 Example:
   $ npm-downloads jquery
