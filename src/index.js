@@ -21,7 +21,7 @@ const printDownloadsCount = (module, downloads) => {
     ];
   });
 
-  console.log(`\n  Downloads of the ${chalk.bold.green(module)} module on npm\n`);
+  console.log(`\n  Downloads for the ${chalk.bold.green(module)} module on npm\n`);
   console.log(table(output, {align: ['r', 'l']}));
 };
 
@@ -69,7 +69,7 @@ const npmDownloads = options => {
     return Promise.reject(new Error('module name required'));
   }
 
-  spinner.start(`Fetching ${chalk.bold.green(options.module)} downloads`);
+  spinner.start(`Fetching ${chalk.bold(options.module)} downloads`);
 
   return fetchDownloadsCount(options)
     .then(response => {
