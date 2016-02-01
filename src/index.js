@@ -37,6 +37,15 @@ const isNonexistentPackage = response => {
   return Array.isArray(response) && response.some(item => item.error);
 };
 
+// Only actually exits the process if the test environment ≠ test
+const kill = exitCode => {
+  if (process.env.NODE_ENV !== 'test') {
+    return process.exit(exitCode);
+  }
+
+  return () => {};
+};
+
 const logError = error => {
   spinner.stop();
 
@@ -46,8 +55,10 @@ const logError = error => {
     error.message = `Tried ${fetchOptions.retries} times but the request has timed out`;
   } else if (error.message === 'nonexistent package') {
     console.log(`Package doesn't seem to exist`);
+    kill(1);
   } else if (error.message === 'module name required') {
     console.log(`Specify a module name`);
+    kill(1);
   }
 
   return error;

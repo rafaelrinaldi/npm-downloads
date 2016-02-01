@@ -31,7 +31,7 @@
   },
   "scripts": {
     "lint": "xo",
-    "test": "xo && ava test.js"
+    "test": "xo && NODE_ENV=test ava test.js"
   },
   "keywords": [
     "npm",
