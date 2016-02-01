@@ -55,13 +55,13 @@ const handleFetchError = error => {
     console.log(error);
   }
 
-  process.exit(1);
+  return process.exit(1);
 };
 
 const npmDownloads = options => {
   spinner.start(`Fetching ${chalk.bold.green(options.module)} downloads`);
 
-  fetchDownloadsCount(options)
+  return fetchDownloadsCount(options)
     .then(response => {
       return response.map(item => item.body);
     })
@@ -70,12 +70,12 @@ const npmDownloads = options => {
 
       if (handleNonexistentPackage(options, response)) {
         printDownloadsCount(options.module, response);
-      } else {
-        process.exit(1);
       }
+
+      return response;
     })
     .catch(error => {
-      handleFetchError(error);
+      return handleFetchError(error);
     });
 };
 
