@@ -1,9 +1,14 @@
-'use strict';
+import test from 'ava';
+import npmDownloads from './src';
 
-const npmDownloads = require('./');
-const test = require('tape');
+test(async t => {
+  const downloads = await npmDownloads({module: 'ava'});
+  const perDay = downloads[0].downloads;
+  const perWeek = downloads[1].downloads;
+  const perMonth = downloads[2].downloads;
+  const valid = value => typeof value === 'number' && value > 0;
 
-test('test shall fail', t => {
-  npmDownloads();
-  t.fail();
+  t.ok(valid(perDay));
+  t.ok(valid(perWeek));
+  t.ok(valid(perMonth));
 });
