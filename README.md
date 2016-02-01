@@ -26,6 +26,10 @@ Options:
      --module               Module to search for the downloads count (or you can just pass it along as seen on the example)
 ```
 
+## Known issues
+
+* Currently the npm API doesn't return download stats for private packages, even tho they're published as public
+
 ## License
 
 MIT :copyright: [Rafael Rinaldi](http://rinaldi.io)
