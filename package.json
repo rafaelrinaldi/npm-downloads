@@ -1,6 +1,6 @@
 {
   "name": "@rafaelrinaldi/npm-downloads",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get the downloads count from a given npm package from the Terminal",
   "license": "MIT",
   "repository": "rafaelrinaldi/npm-downloads",
