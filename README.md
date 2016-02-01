@@ -1,4 +1,4 @@
-# npm-downloads
+# npm-downloads [![Build Status](https://semaphoreci.com/api/v1/projects/2a033503-58f0-4d08-ba32-f883ad912067/680199/badge.svg)](https://semaphoreci.com/rafaelrinaldi/npm-downloads)
 
 > Get the downloads count from a given npm package
 
