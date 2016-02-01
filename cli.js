@@ -18,16 +18,17 @@ const defaults = {
 };
 
 const help = `
-Usage: npm-downloads [PATH] [OPTIONS]
+Usage: npm-downloads <MODULE> [OPTIONS]
 
   Get the downloads count from a given npm package
 
 Example:
-  npm-downloads .
+  $ npm-downloads jquery
 
 Options:
   -v --version              Display current software version
   -h --help                 Display help and usage details
+     --module               Module to search for the downloads count (or you can just pass it along as seen on the example)
 `;
 
 const run = argv => npmDownloads(argv);
