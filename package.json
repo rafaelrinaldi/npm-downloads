@@ -1,0 +1,57 @@
+{
+  "name": "@rafaelrinaldi/npm-downloads",
+  "version": "1.0.0",
+  "description": "Get the downloads count from a given npm package",
+  "license": "MIT",
+  "repository": "rafaelrinaldi/npm-downloads",
+  "bugs": {
+    "url": "https://github.com/rafaelrinaldi/npm-downloads/issues"
+  },
+  "homepage": "https://github.com/rafaelrinaldi/npm-downloads#readme",
+  "author": {
+    "name": "Rafael Rinaldi",
+    "email": "rafael@rinaldi.io",
+    "url": "rinaldi.io"
+  },
+  "bin": {
+    "npm-downloads": "./bin/npm-downloads"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "rules": {
+      "space-before-function-paren": [
+        2,
+        "never"
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "xo",
+    "test": "npm run lint && ava"
+  },
+  "keywords": [
+    "npm",
+    "download",
+    "downloads",
+    "count",
+    "cli"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "got": "^6.1.1",
+    "lodash.flow": "^3.2.1",
+    "log-update": "^1.0.2",
+    "minimist": "^1.2.0",
+    "number-grouper": "0.0.1",
+    "pinkie-promise": "^2.0.0",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}
