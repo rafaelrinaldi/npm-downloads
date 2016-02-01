@@ -2,6 +2,8 @@
 
 > Get the downloads count from a given npm package
 
+![demo](./demo.gif)
+
 ## Install
 
 ```sh
