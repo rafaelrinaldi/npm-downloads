@@ -1,31 +1,16 @@
 {
   "name": "@rafaelrinaldi/npm-downloads",
   "version": "1.0.2",
-  "description": "Get the downloads count from a given npm package from the Terminal",
+  "description": "Get download stats from any package published to npm",
   "license": "MIT",
   "repository": "rafaelrinaldi/npm-downloads",
-  "bugs": {
-    "url": "https://github.com/rafaelrinaldi/npm-downloads/issues"
-  },
-  "homepage": "https://github.com/rafaelrinaldi/npm-downloads#readme",
-  "author": {
-    "name": "Rafael Rinaldi",
-    "email": "rafael@rinaldi.io",
-    "url": "rinaldi.io"
-  },
-  "bin": {
-    "npm-downloads": "./bin/npm-downloads"
-  },
+  "main": "index.js",
+  "bin": "cli.js",
   "engines": {
-    "node": ">=4"
-  },
-  "xo": {
-    "esnext": true,
-    "space": true
+    "node": ">=8.6"
   },
   "scripts": {
-    "lint": "xo",
-    "test": "xo && NODE_ENV=test ava test.js"
+    "test": "NODE_ENV=test prettier-standard *.js && jest --verbose"
   },
   "keywords": [
     "npm",
@@ -35,16 +20,14 @@
     "cli"
   ],
   "dependencies": {
-    "chalk": "^1.1.1",
-    "got": "^6.1.1",
-    "log-update": "^1.0.2",
+    "chalk": "^2.4.1",
+    "got": "^8.3.2",
     "minimist": "^1.2.0",
     "number-grouper": "0.0.1",
-    "pinkie-promise": "^2.0.0",
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "ava": "^0.11.0",
-    "xo": "*"
+    "jest-cli": "^23.4.2",
+    "prettier-standard": "^8.0.0"
   }
 }
