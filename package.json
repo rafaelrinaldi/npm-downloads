@@ -10,7 +10,7 @@
     "node": ">=8.6"
   },
   "scripts": {
-    "test": "NODE_ENV=test prettier-standard *.js && jest --verbose"
+    "test": "NODE_ENV=test prettier-standard *.js && jest --env=node --verbose"
   },
   "keywords": [
     "npm",
