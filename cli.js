@@ -1,26 +1,24 @@
-'use strict';
+#!/usr/bin/env node
 
-const npmDownloads = require('./src');
-const minimist = require('minimist');
-const version = require('./package.json').version;
-const defaults = {
-  boolean: [
-    'help',
-    'version',
-    'last-day',
-    'last-week',
-    'last-month'
-  ],
+const npmDownloads = require('./')
+const minimist = require('minimist')
+const options = {
+  boolean: ['help', 'version', 'json'],
   alias: {
     h: 'help',
     v: 'version'
+  },
+  default: {
+    json: false
   }
-};
+}
+
+const argv = minimist(process.argv.slice(2), options)
 
 const help = `
-Usage: npm-downloads <MODULE> [OPTIONS]
+Usage: npm-downloads <PACKAGE> [OPTIONS]
 
-  Get the downloads count from a given npm package from the Terminal
+  Get download stats from any package published to npm
 
 Example:
   $ npm-downloads jquery
@@ -28,36 +26,32 @@ Example:
 Options:
   -v --version              Display current software version
   -h --help                 Display help and usage details
-     --module               Module to search for the downloads count (or you can just pass it along as seen on the example)
-`;
+     --json                 Render output as JSON
+`
 
-const run = argv => npmDownloads(argv);
+function exitWithSuccess (message) {
+  process.stdout.write(`${message}\n`)
+  process.exit(0)
+}
 
-// Must be ≠ 0 if any errors occur during execution
-exports.exitCode = 0;
+function exitWithError (message, code = 1) {
+  process.stderr.write(`${message}\n`)
+  process.exit(code)
+}
 
-// Allow mocking the stdout/stderr
-exports.stdout = process.stdout;
-exports.stderr = process.stderr;
+if (argv.help || !argv._.length) exitWithSuccess(help)
+if (argv.version) exitWithSuccess(require('./package.json').version)
 
-exports.parse = options => minimist(options, defaults);
+const [packageName] = argv._
 
-exports.run = argv => {
-  // Reset status code at each run
-  exports.exitCode = 0;
-
-  // Make sure module is exported as `module` on the options
-  argv.module = argv.module || argv._.pop();
-
-  if (argv.help) {
-    exports.stderr.write(help);
-    return;
+async function run ({ json }) {
+  try {
+    const output = await npmDownloads({ packageName, json })
+    console.log(output)
+  } catch ({ message, exitCode }) {
+    console.error(message)
+    process.exit(exitCode)
   }
+}
 
-  if (argv.version) {
-    exports.stderr.write(`npm-downloads v${version}\n`);
-    return;
-  }
-
-  run(argv);
-};
+run(argv)
