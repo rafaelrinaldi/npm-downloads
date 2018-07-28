@@ -1,6 +1,6 @@
 {
   "name": "@rafaelrinaldi/npm-downloads",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Get download stats from any package published to npm",
   "license": "MIT",
   "repository": "rafaelrinaldi/npm-downloads",
