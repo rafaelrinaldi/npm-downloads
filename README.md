@@ -1,21 +1,19 @@
 # npm-downloads [![Build Status](https://semaphoreci.com/api/v1/projects/2a033503-58f0-4d08-ba32-f883ad912067/680199/badge.svg)](https://semaphoreci.com/rafaelrinaldi/npm-downloads)
 
-> Get the downloads count from a given npm package from the Terminal
-
-![demo](./demo.gif)
+> Get download stats from any package published to npm
 
 ## Install
 
 ```sh
-$ npm install @rafaelrinaldi/npm-downloads -g
+npm i @rafaelrinaldi/npm-downloads -g
 ```
 
 ## Usage
 
 ```sh
-Usage: npm-downloads <MODULE> [OPTIONS]
+Usage: npm-downloads <PACKAGE> [OPTIONS]
 
-  Get the downloads count from a given npm package from the Terminal
+  Get download stats from any package published to npm
 
 Example:
   $ npm-downloads jquery
@@ -23,16 +21,17 @@ Example:
 Options:
   -v --version              Display current software version
   -h --help                 Display help and usage details
-     --module               Module to search for the downloads count (or you can just pass it along as seen on the example)
+     --json                 Render output as JSON
 ```
 
-## Known issues
+## Notes
 
-* Currently the npm API doesn't return download stats for private packages, even tho they're published as public
+- Works with any package published to npm, including scoped packages
+- Rendering output as raw JSON is possible
 
 ## License
 
-MIT :copyright: [Rafael Rinaldi](http://rinaldi.io)
+MIT © [Rafael Rinaldi](rinaldi.io)
 
 ---
 
